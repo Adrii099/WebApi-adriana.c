@@ -51,7 +51,7 @@ namespace WebApiInvoice.Application.Services
                 return _repository.GetById(id); 
             }
 
-            public List<Product> SelectAll()
+            public List<Proveedor> SelectAll()
             {
                 return _repository.Get();
             }
