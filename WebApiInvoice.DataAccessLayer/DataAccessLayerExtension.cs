@@ -15,8 +15,8 @@ namespace WebApiInvoice.DataAccessLayer
             // configuraciones por ejemplo de EF
             services.AddScoped<IProductRepository, ProductRepository>();
             //registro del repositorio de proveedores
-            services.AddScoped<IProductRepository, ProductRepository>();
-
+            services.AddScoped<IProveedorRepository, ProveedorRepository>();
+            
         }
     }
 }
