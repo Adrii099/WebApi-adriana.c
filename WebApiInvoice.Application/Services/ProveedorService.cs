@@ -11,7 +11,7 @@ namespace WebApiInvoice.Application.Services
 {
     public class ProveedorService : IProveedorService
     {
-        readonly IProveedorRepository _repository;
+        
     
         public ProveedorService(IProveedorRepository repository)
         {
