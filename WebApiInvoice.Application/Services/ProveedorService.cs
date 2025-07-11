@@ -15,47 +15,63 @@ namespace WebApiInvoice.Application.Services
     
         public ProveedorService(IProveedorRepository repository)
         {
-            readonly IProveedorRepository _repository;
-            public ProveedorService(IProveedorRepository repository)
+            _repository = repository;
+        }
+            
+
+        public bool Add(Proveedor model)
+        {
+            if (string.IsNullOrEmpty(model.Name))
             {
-                _repository = repository;
+                return false;
             }
-
-            public bool Add(Proveedor model)
+            if (model.CodigoPostal <= 0)
             {
-                if (string.IsNullOrEmpty(model.Name))
-                    return false;
-                if (model.Price <= 0)
-                    return false;
-
+                return false;
+            }
+            try
+            {
                 return _repository.Create(model) != 0;
             }
-            public bool Update(Proveedor model)
+            catch (Exception ex)
             {
-                if (model.Id == 0)
-                    return false;
-                return _repository.Update(model, model.Id) != 0;
+                Console.WriteLine($"Error al añadir proveedor: {ex.ToString()}");
+                return false;
             }
 
-            public bool Delete(int id)
+           
+        }
+            
+        public bool Update(Proveedor model)
+        {
+            if (model.Id == 0)
             {
-                if (id == 0)
-                    return false;
-                return _repository.Delete(id) != 0;
+                return false;
             }
+            return _repository.Update(model, model.Id) != 0;
+        }
 
-            public Proveedor SelectById(int id)
+        public bool Delete(int id)
+        {
+            if (id == 0)
             {
-                if (id == 0) return null;
-
-                return _repository.GetById(id); 
+                return false;
             }
+            return _repository.Delete(id) != 0;
+        }
+
+        public Proveedor SelectById(int id)
+        {
+            if (id == 0) return null;
+
+            return _repository.GetById(id); 
+        }
 
             public List<Proveedor> SelectAll()
             {
                 return _repository.Get();
             }
-        }
     }
-
+     
 }
+
