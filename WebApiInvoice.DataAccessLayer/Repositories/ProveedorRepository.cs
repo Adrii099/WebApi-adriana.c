@@ -34,6 +34,14 @@ namespace WebApiInvoice.DataAccessLayer
             return 0;
         }
 
+        //Devuelve lista de proveedores
+        public List<Proveedor> Get(int offset = 0, int limit = 0)
+        {
+            return _proveedorList.FindAll(p => true);
+        }
+
+        
+
         
         
     }
