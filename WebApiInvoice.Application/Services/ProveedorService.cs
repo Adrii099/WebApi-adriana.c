@@ -25,12 +25,21 @@ namespace WebApiInvoice.Application.Services
             {
                 return false;
             }
-            if (model.Price <= 0)
+            if (model.CodigoPostal <= 0)
             {
                 return false;
             }
+            try
+            {
+                return _repository.Create(model) != 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al añadir proveedor: {ex.ToString()}");
+                return false;
+            }
 
-            return _repository.Create(model) != 0;
+           
         }
             
         public bool Update(Proveedor model)
