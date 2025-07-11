@@ -20,6 +20,21 @@ namespace WebApiInvoice.DataAccessLayer
             return 1;
         }
 
+        //Elimina proveedor existente de la lista
+        public int Delete(int id)
+        {
+            Proveedor pr = _proveedorList.Find( p => p.Id == id);
+
+            if (pr != null)
+            {
+                _proveedorList.Remove(pr);
+                return 1;
+            }
+
+            return 0;
+        }
+
+        
         
     }
 
