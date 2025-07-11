@@ -40,6 +40,30 @@ namespace WebApiInvoice.DataAccessLayer
             return _proveedorList.FindAll(p => true);
         }
 
+        //Busca un proveedor por su id
+        public Proveedor GetById(int id)
+        {
+            return _proveedorList.SingleOrDefault( p=> p.Id == id);
+        }
+        
+        //Modificar los datos de un proveedor existente
+        public int Update(Proveedor model, int id)
+        {
+            Proveedor pr = _proveedorList.Find(p => p.Id == id);
+
+            if ( pr != null )
+            {
+                pr.Name = model.Name;
+                pr.Ciudad = model.Ciudad;
+                pr.Telefono = model.Telefono;
+                pr.CodigoPostal = model.CodigoPostal;
+
+                return 1;
+            }
+            return 0;
+        }
+        
+
         
 
         
